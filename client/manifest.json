@@ -1,0 +1,15 @@
+{
+    "short_name": "Reviewer",
+    "name": "Restaurant Review aPP",
+    "icons": [
+      {
+        "src": "/icons/food_512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "index.html?launcher=true",
+    "display": "fullscreen",
+    "theme_color": "#3397DB",
+    "background_color": "#fff"
+  }
