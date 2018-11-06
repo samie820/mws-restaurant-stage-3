@@ -1,39 +1,60 @@
 @charset "utf-8";
 /* CSS Document */
 
-body,td,th,p{
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 10pt;
-	color: #333;
-	line-height: 1.5;
+body,
+td,
+th,
+p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #333;
+  line-height: 1.5;
 }
 body {
-	background-color: #fdfdfd;
-	margin: 0;
-	position:relative;
+  background-color: #fdfdfd;
+  margin: 0;
+  position: relative;
 }
-ul, li {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 10pt;
-	color: rgb(0, 0, 0);
+ul,
+li {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: rgb(0, 0, 0);
 }
 a {
-	color: orange;
-	text-decoration: none;
+  color: orange;
+  text-decoration: none;
 }
-a:hover, a:focus {
-	color: #3397db;
-	text-decoration: none;
+a:hover,
+a:focus {
+  color: #3397db;
+  text-decoration: none;
 }
-a img{
-	border: none 0px #fff;
+a img {
+  border: none 0px #fff;
 }
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0 0 20px;
 }
-article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 #maincontent {
   background-color: #f3f3f3;
@@ -53,7 +74,7 @@ nav {
   width: 100%;
   height: 80px;
   background-color: #252831;
-  text-align:center;
+  text-align: center;
 }
 nav h1 {
   margin: auto;
@@ -66,36 +87,36 @@ nav h1 a {
   text-transform: uppercase;
 }
 #breadcrumb {
-    padding: 10px 40px 16px;
-    list-style: none;
-    background-color: #eee;
-    font-size: 17px;
-    margin: 0;
-    width: calc(50% - 80px);
+  padding: 10px 40px 16px;
+  list-style: none;
+  background-color: #eee;
+  font-size: 17px;
+  margin: 0;
+  width: calc(50% - 80px);
 }
 
 /* Display list items side by side */
 #breadcrumb li {
-    display: inline;
+  display: inline;
 }
 
 /* Add a slash symbol (/) before/behind each list item */
-#breadcrumb li+li:before {
-    padding: 8px;
-    color: black;
-    content: "/\00a0";
+#breadcrumb li + li:before {
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
 }
 
 /* Add a color to all links inside the list */
 #breadcrumb li a {
-    color: #0275d8;
-    text-decoration: none;
+  color: #0275d8;
+  text-decoration: none;
 }
 
 /* Add a color on mouse-over */
 #breadcrumb li a:hover {
-    color: #01447e;
-    text-decoration: underline;
+  color: #01447e;
+  text-decoration: underline;
 }
 /* ====================== Map ====================== */
 #map {
@@ -110,7 +131,7 @@ nav h1 a {
   justify-content: space-evenly;
   width: 100%;
   height: 50px;
-  background-color: #3397DB;
+  background-color: #3397db;
   align-items: center;
 }
 .filter-options h2 {
@@ -123,7 +144,7 @@ nav h1 a {
 .filter-options select {
   background-color: white;
   border: 1px solid #fff;
-  font-family: Arial,sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 11pt;
   height: 35px;
   letter-spacing: 0;
@@ -153,7 +174,7 @@ nav h1 a {
 #restaurants-list li {
   background-color: #fff;
   border: 2px solid #ccc;
-  font-family: Arial,sans-serif;
+  font-family: Arial, sans-serif;
   text-align: left;
   padding: 5%;
 }
@@ -167,7 +188,7 @@ nav h1 a {
 }
 #restaurants-list li h1 {
   color: #f18200;
-  font-family: Arial,sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 14pt;
   font-weight: 200;
   letter-spacing: 0;
@@ -197,7 +218,7 @@ nav h1 a {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 1000000000;
 }
 .inside #map-container {
   background: blue none repeat scroll 0 0;
@@ -219,7 +240,7 @@ nav h1 a {
 }
 #restaurant-name {
   color: #f18200;
-  font-family: Arial,sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 20pt;
   font-weight: 200;
   letter-spacing: 0;
@@ -228,7 +249,7 @@ nav h1 a {
   line-height: 1.1;
 }
 #restaurant-img {
-	width: 90%;
+  width: 90%;
 }
 #restaurant-address {
   font-size: 12pt;
@@ -244,9 +265,10 @@ nav h1 a {
   padding: 2px 0;
   text-align: center;
   text-transform: uppercase;
-	width: 90%;
+  width: 90%;
 }
-#restaurant-container, #reviews-container {
+#restaurant-container,
+#reviews-container {
   border-bottom: 1px solid #d9d9d9;
   border-top: 1px solid #fff;
   padding: 140px 20px 30px;
@@ -268,7 +290,7 @@ nav h1 a {
 }
 #reviews-list li {
   background-color: #fff;
-    border: 2px solid #f3f3f3;
+  border: 2px solid #f3f3f3;
   display: block;
   list-style-type: none;
   margin: 0 0 30px;
@@ -301,7 +323,6 @@ nav h1 a {
   font-weight: bolder;
 }
 
-
 @media screen and (max-width: 600px) {
   body * {
     box-sizing: border-box;
@@ -313,7 +334,8 @@ nav h1 a {
     position: inherit;
   }
 
-  #restaurant-container, #reviews-container {
+  #restaurant-container,
+  #reviews-container {
     border-bottom: 1px solid #d9d9d9;
     border-top: 1px solid #fff;
     padding: 140px 20px 30px;
@@ -332,8 +354,7 @@ nav h1 a {
   }
   #breadcrumb {
     width: 100%;
-}
-
+  }
 }
 
 /************************SKIP-LINK ****************************************/
@@ -344,7 +365,7 @@ nav h1 a {
   background: #032d52;
   color: #eee;
   padding: 8px;
-  z-index: 10000;
+  z-index: 10000000000;
 }
 
 .skip-link:focus {
@@ -352,7 +373,7 @@ nav h1 a {
 }
 
 /*************************** FAB for Creating reviews *************************************/
-.fab{
+.fab {
   width: 70px;
   height: 70px;
   background-color: #f58500;
@@ -369,47 +390,76 @@ nav h1 a {
   bottom: 50px;
 
   transition: all 0.1s ease-in-out;
-  z-index: 40;
+  z-index: 40000000;
   border: none;
 }
 
-.fab:hover{
+.fab:hover {
   box-shadow: 0 6px 14px 0 #666;
-  transform: scale(1.05)
+  transform: scale(1.05);
 }
 
 /************************* MODAL ****************************************/
 .modal {
-  display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 10000; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  opacity: 0;
+  visibility: hidden;
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  transition: opacity 0.2s, visibility 0.2s, margin-top 0s 0.2s;
+}
+
+.modal.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal.hide {
+  opacity: 0;
+  visibility: hidden;
 }
 
 /* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin-top: 18%;
+  margin-left: 10%; /* 20% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  animation-name: animatetop;
-  animation-duration: 0.4s;
-  transition: all 0.1s ease-in-out;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-/* Add Animation */
-@keyframes animatetop {
-  from {top: -300px; opacity: 0}
-  to {top: 0; opacity: 1}
+@media screen and (min-width: 601px) and (max-width: 895px){
+  .modal-content{
+    margin-top: 25%;
+  }
 }
+
+
+@media screen and (min-width: 460px) and (max-width: 600px){
+  .modal-content{
+    margin-top: 30%;
+  }
+}
+
+@media screen and (max-width: 459px){
+  .modal-content{
+    margin-top: 37%;
+  }
+
+  .fab {
+    right: 20px;
+    bottom: 20px;
+  }
+}
+
 
 /* The Close Button */
 .close {
@@ -417,6 +467,8 @@ nav h1 a {
   float: right;
   font-size: 28px;
   font-weight: bold;
+  width: 100%;
+  text-align: right;
 }
 
 .close:hover,
@@ -424,6 +476,54 @@ nav h1 a {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+/***********      FORM         *******************/
+form > .row{
+  width: 80%;
+  margin: auto;
+}
+
+.row img{
+  width: 80px;
+  height: 100px;
+  margin: auto;
+  display: none;
+}
+
+input, textarea{
+  width: 100%;
+  padding: 2%;
+  padding-left: 0;
+  padding-bottom: 1%;
+}
+
+label {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.btn{
+  padding: 2%;
+  border: none;
+  background-color: #f58500;
+  font-weight: 800;
+  color: #ffffff;
+  margin-left: 2px;
+}
+
+.btn.outline{
+  border-color: #f58500;
+  border-width: 1px;
+  border: #f58500;
+  background-color: transparent;
+  color: #000000;
+}
+
+.error-label{
+  color: rgb(221, 34, 1);
+  font-size: 12px;
+  font-weight: bold;
 }
 
 /*************************Flexbox grid ***********************************/
@@ -440,7 +540,6 @@ nav h1 a {
   min-width: 25%;
   margin-top: 10%;
 }
-
 
 @media screen and (max-width: 400px) {
   .flex-grid {
@@ -462,7 +561,6 @@ nav h1 a {
   .col {
     width: 50%;
     flex: 1;
-
   }
 }
 

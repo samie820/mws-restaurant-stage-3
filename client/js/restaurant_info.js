@@ -135,23 +135,25 @@ fillRestaurantHoursHTML = (
 /**
  * Create all reviews HTML and add them to the webpage.
  */
-fillReviewsHTML = (reviews = self.restaurant.reviews) => {
+fillReviewsHTML = () => {
   const container = document.getElementById("reviews-container");
   const title = document.createElement("h3");
   title.innerHTML = "Reviews";
   container.appendChild(title);
-
-  if (!reviews) {
-    const noReviews = document.createElement("p");
-    noReviews.innerHTML = "No reviews yet!";
-    container.appendChild(noReviews);
-    return;
-  }
-  const ul = document.getElementById("reviews-list");
-  reviews.forEach(review => {
-    ul.appendChild(createReviewHTML(review));
-  });
-  container.appendChild(ul);
+  const id = getParameterByName("id");
+  DBHelper.fetchRestaurantReviews((error, reviews) => {
+    if (!reviews) {
+      const noReviews = document.createElement("p");
+      noReviews.innerHTML = "No reviews yet!";
+      container.appendChild(noReviews);
+      return;
+    }
+    const ul = document.getElementById("reviews-list");
+    reviews.forEach(review => {
+      ul.appendChild(createReviewHTML(review));
+    });
+    container.appendChild(ul);
+  }, id);
 };
 
 /**
@@ -165,10 +167,10 @@ createReviewHTML = review => {
   name.innerHTML = review.name;
   li.appendChild(name);
 
-  const date = document.createElement("p");
-  date.innerHTML = review.date;
-  date.setAttribute("tabindex", "0");
-  li.appendChild(date);
+  // const date = document.createElement("p");
+  // date.innerHTML = review.date;
+  // date.setAttribute("tabindex", "0");
+  // li.appendChild(date);
 
   const rating = document.createElement("p");
   rating.innerHTML = `<span tabindex="0" class="rating">Rating: ${
@@ -208,6 +210,29 @@ getParameterByName = (name, url) => {
   return decodeURIComponent(results[2].replace(/\+/g, " "));
 };
 
+submitReviewForm = event => {
+  const form = document.getElementById("submitReviewForm");
+  const modal = document.getElementById("myModal");
+
+  document.getElementById("loadingIndicator").style.display = "block";
+  const id = getParameterByName("id");
+  const payload = {
+    id: Math.floor(Math.random() * 100),
+    restaurant_id: id,
+    name: `${form.elements[0].value} ${form.elements[1].value}`,
+    rating: form.elements[2].value,
+    comments: form.elements[3].value
+  };
+
+  DBHelper.saveRestaurantReview(payload, (error, response) => {
+    if (!response) {
+      document.getElementById("errorLabel").innerText = error;
+    } else {
+      modal.classList.remove("show");
+      document.getElementById("loadingIndicator").style.display = "none";
+    }
+  });
+};
 
 /**
  * show modal for submitting a review
@@ -215,12 +240,21 @@ getParameterByName = (name, url) => {
 openSubmitReviewModal = () => {
   // Get the modal
   const modal = document.getElementById("myModal");
-  modal.style.display = "block";
+  const closeBtn = document.getElementById("closeModal");
+  const reviewSubmitButton = document.getElementById("submitReview");
+  modal.classList.add("show");
 
+  reviewSubmitButton.addEventListener("click", submitReviewForm);
+  //call function to close overlay when the close button is clicked
+  closeBtn.addEventListener("click", function(e) {
+    modal.classList.remove("show");
+    document.getElementById("loadingIndicator").style.display = "none";
+  });
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
+    if (event.target === modal) {
+      modal.classList.remove("show");
+      document.getElementById("loadingIndicator").style.display = "none";
     }
   };
 };

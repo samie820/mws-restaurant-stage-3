@@ -1,5 +1,5 @@
 self.addEventListener("install", e => {
-  console.log('service worker installing')
+  console.log("service worker installing");
   e.waitUntil(
     caches.open("restaurant-review-v2").then(cache => {
       return cache.addAll([
@@ -26,27 +26,30 @@ self.addEventListener("install", e => {
         "/img/10.jpg",
         "/icons/food_256.png",
         "/icons/food_512.png",
+        "/img/loader.gif"
       ]);
     })
   );
 });
 
 self.addEventListener("fetch", event => {
-  event.respondWith(
-    caches.match(event.request, {
-      ignoreSearch: true,
-    }).then(response => {
-      return (
-        response ||
-        fetch(event.request).then(response => {
-          return caches.open("restaurant-review-v2").then(cache => {
-            cache.put(event.request, response.clone());
-            return response;
-          });
+    event.respondWith(
+      caches
+        .match(event.request, {
+          ignoreSearch: true
         })
-      );
-    })
-  );
+        .then(response => {
+          return (
+            response ||
+            fetch(event.request).then(response => {
+              return caches.open("restaurant-review-v2").then(cache => {
+                cache.put(event.request, response.clone());
+                return response;
+              });
+            })
+          );
+        })
+    );
 });
 
 self.addEventListener("activate", event => {
