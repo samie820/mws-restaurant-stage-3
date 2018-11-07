@@ -18,7 +18,7 @@ class DBHelper {
 
   static get RESTAURANT_REVIEWS() {
     const port = 1337;
-    return `http://localhost:${port}/reviews/?restaurant_id=`
+    return `http://localhost:${port}/reviews/?restaurant_id=`;
   }
 
   /**
@@ -33,7 +33,6 @@ class DBHelper {
     }
   }
 
-  
   /**
    * Fetch all restaurants reviews.
    */
@@ -41,12 +40,63 @@ class DBHelper {
     const appOnline = window.navigator.onLine;
     if (appOnline) {
       DBHelper.fetchRestaurantsReviewFromServer(callback, id);
+      DBHelper.syncRestaurantsReviewWithServer();
     } else {
       DBHelper.getRestaurantReviewsFromDB(callback, id);
     }
   }
 
-    /**
+  /**
+   * Sync saved payload to the server
+   *
+   */
+  static syncRestaurantsReviewWithServer() {
+    const dbPromise = idb.open("restaurantDatabase");
+    dbPromise
+      .then(function(db) {
+        const tx = db.transaction("reviews");
+        const reviewsStore = tx.objectStore("reviews");
+        return reviewsStore.getAll();
+      })
+      .then(function(reviews) {
+        // send payload to the server
+        reviews.forEach(offlineReview => {
+          if (offlineReview.offline) {
+            const payload = {
+              comments: offlineReview.comments,
+              name: offlineReview.name,
+              rating: offlineReview.rating,
+              restaurant_id: offlineReview.restaurant_id
+            };
+            fetch(DBHelper.CREATE_REVIEW_URL, {
+              method: "POST",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify(payload)
+            })
+              .then(res => res.json())
+              .then(response => {
+                dbPromise.then(db => {
+                  // delete offline data after sending it to the server
+                  const tx = db.transaction("reviews", "readwrite");
+                  const reviewsStore = tx.objectStore("reviews");
+                  reviewsStore.delete(offlineReview.id);
+                  reviewsStore.put(response);
+                  return tx.complete;
+                });
+              }) // Got a successfully response from the server
+              .catch(errorMessage => {
+                const error = `Request failed. Returned status of ${errorMessage}`;
+                console.log(error);
+              });
+          }
+        });
+      });
+  }
+
+  /**
    * Retrieve response from the database
    *
    */
@@ -59,7 +109,12 @@ class DBHelper {
         return reviewsStore.getAll();
       })
       .then(function(reviews) {
-        callback(null, reviews.filter(review => review.restaurant_id.toString() === id.toString()));
+        callback(
+          null,
+          reviews.filter(
+            review => review.restaurant_id.toString() === id.toString()
+          )
+        );
       })
       .catch(function(error) {
         const error = `Request failed. Returned status of ${error}`;
@@ -93,11 +148,11 @@ class DBHelper {
         Accept: "application/json",
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ ...payload })
+      body: JSON.stringify(payload)
     })
       .then(res => res.json())
       .then(response => {
-        DBHelper.saveReviewToDB(response, callback); // save to IndexedDB
+        DBHelper.saveReviewToDB(response, callback, false); // save to IndexedDB
       }) // Got a successfully response from the server
       .catch(errorMessage => {
         const error = `Request failed. Returned status of ${errorMessage}`;
@@ -114,13 +169,15 @@ class DBHelper {
       upgradeDB.createObjectStore("restaurants", { keyPath: "id" });
       upgradeDB.createObjectStore("reviews", { keyPath: "id" });
     });
-    if(isOffline){
+    if (isOffline) {
       dbPromise.then(function(db) {
         const tx = db.transaction("reviews", "readwrite");
         const reviewStore = tx.objectStore("reviews");
         // save the recieved review to the DB
+        review.offline = true;
+        review.id = Math.floor(Math.random() * 100),
         reviewStore.put(review);
-        return tx.complete
+        return tx.complete;
       });
     }
     dbPromise.then(function(db) {
@@ -150,7 +207,7 @@ class DBHelper {
       });
   }
 
-    /**
+  /**
    * Fetch all restaurants review from the server.
    */
   static fetchRestaurantsReviewFromServer(callback, id) {
@@ -187,7 +244,7 @@ class DBHelper {
     });
   }
 
-    /**
+  /**
    * Save response from the server to the database
    * @param {Object} reviews
    */

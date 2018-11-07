@@ -217,7 +217,6 @@ submitReviewForm = event => {
   document.getElementById("loadingIndicator").style.display = "block";
   const id = getParameterByName("id");
   const payload = {
-    id: Math.floor(Math.random() * 100),
     restaurant_id: id,
     name: `${form.elements[0].value} ${form.elements[1].value}`,
     rating: form.elements[2].value,

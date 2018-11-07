@@ -33,6 +33,9 @@ self.addEventListener("install", e => {
 });
 
 self.addEventListener("fetch", event => {
+    if(event.request.url.indexOf('/reviews/?restaurant_id=') !== -1) {
+      return;
+    }
     event.respondWith(
       caches
         .match(event.request, {
