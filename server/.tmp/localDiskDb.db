@@ -638,36 +638,6 @@
         "id": 44
       },
       {
-        "id": 89,
-        "restaurant_id": "2",
-        "name": "Abiodun Tosin",
-        "rating": "3",
-        "comments": "This cozy Clinton Hill restaurant excels at both straightforward and unusual wood-fired pizzas. If you want a taste of the latter, consider ordering the Emily, which is topped with mozzarella, pistachios, truffled sottocenere cheese, and honey. The menu includes salads and a handful of starters, as well as a burger that some meat connoisseurs consider to be among the best in the city.",
-        "offline": true,
-        "createdAt": "2018-11-07T20:42:26.720Z",
-        "updatedAt": "2018-11-07T20:42:26.720Z"
-      },
-      {
-        "id": 89,
-        "restaurant_id": "2",
-        "name": "Abiodun Tosin",
-        "rating": "3",
-        "comments": "This cozy Clinton Hill restaurant excels at both straightforward and unusual wood-fired pizzas. If you want a taste of the latter, consider ordering the Emily, which is topped with mozzarella, pistachios, truffled sottocenere cheese, and honey. The menu includes salads and a handful of starters, as well as a burger that some meat connoisseurs consider to be among the best in the city.",
-        "offline": true,
-        "createdAt": "2018-11-07T20:42:49.830Z",
-        "updatedAt": "2018-11-07T20:42:49.830Z"
-      },
-      {
-        "id": 89,
-        "restaurant_id": "2",
-        "name": "Abiodun Tosin",
-        "rating": "3",
-        "comments": "This cozy Clinton Hill restaurant excels at both straightforward and unusual wood-fired pizzas. If you want a taste of the latter, consider ordering the Emily, which is topped with mozzarella, pistachios, truffled sottocenere cheese, and honey. The menu includes salads and a handful of starters, as well as a burger that some meat connoisseurs consider to be among the best in the city.",
-        "offline": true,
-        "createdAt": "2018-11-07T20:46:34.889Z",
-        "updatedAt": "2018-11-07T20:46:34.889Z"
-      },
-      {
         "id": 90,
         "restaurant_id": "2",
         "name": "Abiodun Tosin",
